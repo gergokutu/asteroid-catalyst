@@ -2,7 +2,7 @@
 const fs = require('fs')
 
 const getData = (callback) => {
-  fs.readFile('lvl1-4.inp.html', function(err, contents) {
+  fs.readFile('lvl1-4.inp.txt', function(err, contents) {
     return callback(contents.toString())
   })
 }
