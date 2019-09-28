@@ -9,7 +9,6 @@ const getData = (callback) => {
 getData(response => {
   // create array from imported data by every new line
   const rawInput = response.split('\n')
-  console.log('INPUT:', rawInput)
 
   // shift method changes the original rawInput
   const firstLineOfRawInput = rawInput.shift()
@@ -22,8 +21,7 @@ getData(response => {
 
   const timeStamps = []
 
-  // following part should be repeated » numOfBlocks times
-  // every iteration should check the next block...
+  // every iteration checks the next block...
 
   for (let index = 0; index < numOfBlocks * numOfRowsInABlock; index = index + numOfRowsInABlock) {
     const block = data.splice(0, numOfRowsInABlock)
@@ -33,7 +31,7 @@ getData(response => {
 
     if (blockSum !== 0) {
       timeStamps.push(parseInt(timeStampRow[0]))
-      console.log('timeStamp:', timeStamps)
+      console.log('TIMESTAMPS of the asteroids:', timeStamps)
     }
   }
 })
