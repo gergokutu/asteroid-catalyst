@@ -9,6 +9,7 @@ const getData = (callback) => {
 getData(response => {
   // create array from imported data by every new line
   const rawInput = response.split('\n')
+  console.log('INPUT:', rawInput)
 
   // shift method changes the original rawInput
   const firstLineOfRawInput = rawInput.shift()
