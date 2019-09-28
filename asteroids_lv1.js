@@ -7,47 +7,38 @@ const getData = (callback) => {
 }
 
 getData(response => {
+  console.log('RAW:', response)
+
   const rawInput = response.split('\n')
   const firstLineOfRawInput = rawInput.shift()
   const firstLineInArray = firstLineOfRawInput.split(' ')
-  console.log('firstLineOfInput:', firstLineInArray)
+  console.log('firstLineInArray:', firstLineInArray)
 
   const myInputLength = rawInput.length - 1
-  // console.log('myInputLength:', myInputLength)
   const data = rawInput.splice(0, myInputLength).map(array => array.split(' '))
   console.log('asteroid info:', data)
 
   const numOfRowsInABlock = parseInt(data[0][1], 10) + 1
-  console.log('numOfRaws:', numOfRowsInABlock)
+  console.log('numOfRowsInABlock:', numOfRowsInABlock)
 
   const numOfBlocks = data.length / numOfRowsInABlock
   console.log('numOfBlocks:', numOfBlocks)
 
-  const timeStamp = []
-  
-  const firstBlock = data.splice(0, numOfRowsInABlock)
-  const firstTimeStamp = firstBlock.shift()
-  console.log('firstTimeStamp:', firstTimeStamp)
-  console.log('firstBlock:', firstBlock)
+  const timeStamps = []
 
-  const secondBlock = data.splice(0, numOfRowsInABlock)
-  const secondTimeStamp = secondBlock.shift()
-  const blockSum = secondBlock.map(row => row.reduce((num, sum) => parseInt(num + sum)))
-  const blockResult = blockSum.reduce((num, sum) => num + sum)
-  console.log('secondTimeStamp:', secondTimeStamp)
-  console.log('secondBlock:', secondBlock)
-  console.log('SUM:', blockSum)
-  console.log('RESULT:', blockResult)
+  const block = data.splice(0, numOfRowsInABlock)
+  const timeStampRow = block.shift()
+  const sumOfPicRows = block.map(row => row.reduce((accumulator, currentValue) => parseInt(accumulator + currentValue)))
+  const blockSum = sumOfPicRows.reduce((accumulator, currentValue) => accumulator + currentValue)
+  console.log('timeStampRow:', timeStampRow)
+  console.log('block:', block)
+  console.log('sumOfPicRows:', sumOfPicRows)
+  console.log('blockSum:', blockSum)
   
-  if (blockResult !== 0) {
-    timeStamp.push(blockResult)
-    console.log('timeStamp:', timeStamp)
+  if (blockSum !== 0) {
+    timeStamps.push(parseInt(timeStampRow[0]))
+    console.log('timeStamp:', timeStamps)
   }
-
-  const thirdBlock = data.splice(0, numOfRowsInABlock)
-  const thirdTimeStamp = thirdBlock.shift()
-  console.log('thirdTimeStamp:', thirdTimeStamp)
-  console.log('thirdBlock:', thirdBlock)
 })
 
 
