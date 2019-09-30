@@ -1,13 +1,13 @@
 // import files with node.js file system
 const fs = require('fs')
 
-const getData = (callback) => {
+const getAndWriteData = (callback) => {
   fs.readFile('lvl1-4.inp.txt', function(err, contents) {
     return callback(contents.toString())
   })
 }
 
-getData(response => {
+getAndWriteData(response => {
   // create array from imported data by every new line
   const rawInput = response.split('\n')
 
@@ -35,6 +35,11 @@ getData(response => {
       console.log('TIMESTAMPS of the asteroids:', timeStamps)
     }
   }
+
+  fs.writeFile('asteroid4_processed.txt', timeStamps, function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  })
 })
 
 
