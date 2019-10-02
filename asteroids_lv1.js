@@ -2,11 +2,9 @@
 const fs = require('fs')
 
 const getAndWriteData = (callback) => {
-  for (let index = 0; index < 5; index++) {
     fs.readFile('lvl1-4.inp.txt', function(err, contents) {
       return callback(contents.toString())
     })
-  }
 }
 
 getAndWriteData(response => {
