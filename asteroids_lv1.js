@@ -2,7 +2,7 @@
 const fs = require('fs')
 
 const getAndWriteData = (callback) => {
-    fs.readFile('lvl1-4.inp.txt', function(err, contents) {
+    fs.readFile('input4.txt', function(err, contents) {
       return callback(contents.toString())
     })
 }
@@ -36,7 +36,7 @@ getAndWriteData(response => {
     }
   }
 
-  fs.writeFile('asteroid_4_processed.txt', timeStamps, function (err) {
+  fs.writeFile('output.txt', timeStamps, function (err) {
     if (err) throw err;
     console.log('Saved!');
   })
